@@ -156,6 +156,7 @@ SECTIONS
 		PROVIDE(_bss_start = .);
 		*(.bss)
 		*(.bss.*)
+		*(.sbss)
 		. = ALIGN(8);
 		PROVIDE(_bss_end = .);
 	}
