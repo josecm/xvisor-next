@@ -50,13 +50,21 @@ int arch_mmu_pgtbl_min_align_order(int stage)
 }
 
 int arch_mmu_pgtbl_align_order(int stage, int level)
-{
-	return PGTBL_PAGE_SIZE_SHIFT;
+{	
+	if(stage == MMU_STAGE2 && level == 2) {
+		return ARCH_MMU_STAGE2_ROOT_ALIGN_ORDER;
+	} else {
+		return PGTBL_PAGE_SIZE_SHIFT;
+	}
 }
 
 int arch_mmu_pgtbl_size_order(int stage, int level)
 {
-	return PGTBL_PAGE_SIZE_SHIFT;
+	if(stage == MMU_STAGE2 && level == 2) {
+		return ARCH_MMU_STAGE2_ROOT_SIZE_ORDER;
+	} else {
+		return PGTBL_PAGE_SIZE_SHIFT;
+	}
 }
 
 void arch_mmu_stage2_tlbflush(bool remote,
